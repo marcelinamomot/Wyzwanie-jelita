@@ -36,6 +36,49 @@
     overflow-x: hidden;
   }
 
+  /* ─── DATE BANNER ─── */
+  .date-banner {
+    background: linear-gradient(135deg, var(--earth) 0%, var(--moss) 100%);
+    padding: 14px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(46,204,113,0.2);
+  }
+
+  .date-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .date-badge {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--warm-white);
+    opacity: 0.9;
+  }
+
+  .date-banner-inner strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--warm-white);
+    letter-spacing: 0.5px;
+  }
+
+  .date-sep {
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 600px) {
+    .date-banner-inner { flex-direction: column; gap: 8px; }
+    .date-sep { display: none; }
+  }
+
   /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
@@ -1059,6 +1102,25 @@
     text-align: center;
   }
 
+  .footer-regulamin {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--earth);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(46,204,113,0.3);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+    opacity: 1;
+  }
+
+  .footer-regulamin:hover {
+    color: var(--moss);
+    border-color: var(--moss);
+  }
+
   .footer-contact {
     font-size: 13px;
     font-weight: 300;
@@ -1084,6 +1146,363 @@
   }
 
   /* ─── RESPONSIVE ─── */
+  /* ─── SYNBIOTYK ─── */
+  .synbio {
+    background: var(--warm-white);
+    padding: 100px 80px;
+  }
+
+  .synbio-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .synbio-lead {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.9;
+    margin: 24px 0 32px;
+  }
+
+  .synbio-highlight {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: linear-gradient(135deg, var(--sand), var(--sky));
+    padding: 24px 28px;
+    border-left: 4px solid var(--earth);
+  }
+
+  .synbio-highlight-icon { font-size: 22px; margin-top: 2px; }
+
+  .synbio-highlight p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1.7;
+  }
+
+  .synbio-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+
+  .synbio-card {
+    background: var(--cream);
+    padding: 28px 26px;
+    transition: all 0.3s;
+  }
+
+  .synbio-card:hover {
+    background: var(--deep);
+    transform: translateY(-4px);
+  }
+
+  .synbio-card:hover h4,
+  .synbio-card:hover p { color: var(--warm-white); }
+
+  .synbio-card-icon { font-size: 24px; display: block; margin-bottom: 12px; }
+
+  .synbio-card h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--deep);
+    margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+
+  .synbio-card p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.6;
+    transition: color 0.3s;
+  }
+
+  .synbio-tested {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--earth);
+    margin-top: 20px;
+    opacity: 0.8;
+  }
+
+  /* ─── PRICING ─── */
+  .pricing {
+    background: var(--deep);
+    padding: 100px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(46,204,113,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(69,184,216,0.06) 0%, transparent 50%);
+  }
+
+  .pricing-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .pricing-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.9;
+    max-width: 600px;
+    margin: 24px auto 0;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+
+  /* kroki */
+  .pricing-steps {
+    background: rgba(255,255,255,0.04);
+    padding: 52px 48px;
+  }
+
+  .pricing-steps-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--warm-white);
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+
+  .pricing-step {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 36px;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1;
+    min-width: 44px;
+  }
+
+  .step-text {
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .step-text strong {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--warm-white);
+  }
+
+  .step-text span {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.6;
+  }
+
+  /* value box */
+  .pricing-value-box {
+    background: rgba(46,204,113,0.08);
+    border: 1px solid rgba(46,204,113,0.2);
+    padding: 52px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pricing-free-badge {
+    display: inline-block;
+    background: var(--earth);
+    color: var(--warm-white);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    padding: 10px 24px;
+    align-self: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .pricing-what-free {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .pricing-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 28px;
+  }
+
+  .pricing-condition-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 12px;
+  }
+
+  .pricing-cost-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .pricing-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1;
+  }
+
+  .pricing-per {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--sage);
+  }
+
+  .pricing-cost-detail {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.7;
+    opacity: 0.7;
+    margin-bottom: 28px;
+  }
+
+  .pricing-coffee {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.05);
+    padding: 20px 24px;
+  }
+
+  .coffee-icon { font-size: 22px; margin-top: 2px; }
+
+  .pricing-coffee p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.7;
+  }
+
+  .pricing-coffee strong {
+    color: var(--warm-white);
+    font-weight: 500;
+  }
+
+  /* pasek wartości */
+  .pricing-value-bar {
+    background: rgba(255,255,255,0.04);
+    padding: 44px 48px;
+  }
+
+  .pricing-value-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .pricing-value-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .pricing-value-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 28px;
+    text-align: center;
+  }
+
+  .pricing-value-item span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--warm-white);
+    line-height: 1.2;
+  }
+
+  .pricing-value-item small {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--sage);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .pricing-value-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--earth);
+    opacity: 0.6;
+    padding: 0 4px;
+  }
+
+  .pricing-value-result span {
+    color: var(--earth) !important;
+    font-weight: 600 !important;
+  }
+
+  .pricing-value-result small {
+    color: var(--moss) !important;
+  }
+
+  @media (max-width: 900px) {
+    .synbio { padding: 80px 40px; }
+    .synbio-inner { grid-template-columns: 1fr; gap: 50px; }
+    .synbio-cards { grid-template-columns: 1fr; }
+    .pricing { padding: 80px 40px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-value-items { flex-direction: column; gap: 16px; }
+    .pricing-value-sep { transform: rotate(90deg); }
+    .pricing-value-bar { padding: 40px 28px; }
+  }
+
   /* ─── ILLUSTRATIONS ─── */
   .symptom-illustration {
     max-width: 320px;
@@ -1266,6 +1685,17 @@
 </head>
 <body>
 
+<!-- ─── DATE BANNER ─── -->
+<div class="date-banner">
+  <div class="date-banner-inner">
+    <span class="date-badge">📅 Live powitalny</span>
+    <strong>22.02.2026</strong>
+    <span class="date-sep">|</span>
+    <span class="date-badge">🚀 Start wyzwania</span>
+    <strong>23.02.2026</strong>
+  </div>
+</div>
+
 <!-- ─── HERO ─── -->
 <section class="hero">
   <div class="hero-left">
@@ -1284,7 +1714,7 @@
       <span class="pillar">emocje</span>
       <span class="pillar">energia</span>
     </div>
-    <a href="#formularz" class="btn-primary"><span>Dołączam do procesu →</span></a>
+    <a href="https://forms.gle/gCNguN5zoKhNZeXY7" target="_blank" class="btn-primary"><span>Dołączam do procesu →</span></a>
   </div>
   <div class="hero-right">
     <div class="organic-shape shape-1"></div>
@@ -1442,7 +1872,7 @@
   </div>
   <div class="symptoms-cta reveal">
     <p>Jeśli choć jedno zdanie jest o Tobie — ten proces jest dla Ciebie.</p>
-    <a href="#formularz" class="btn-primary"><span>Chcę wziąć udział →</span></a>
+    <a href="https://forms.gle/gCNguN5zoKhNZeXY7" target="_blank" class="btn-primary"><span>Chcę wziąć udział →</span></a>
   </div>
 </section>
 
@@ -1716,7 +2146,7 @@
     </div>
   </div>
   <div class="reveal">
-    <a href="#formularz" class="btn-primary" style="background: var(--warm-white); color: var(--deep);"><span>To o mnie – zapisuję się →</span></a>
+    <a href="https://forms.gle/gCNguN5zoKhNZeXY7" target="_blank" class="btn-primary" style="background: var(--warm-white); color: var(--deep);"><span>To o mnie – zapisuję się →</span></a>
   </div>
 </section>
 
@@ -1775,6 +2205,155 @@
   </div>
 </section>
 
+<!-- ─── SYNBIOTYK ─── -->
+<section class="synbio">
+  <div class="synbio-inner">
+    <div class="synbio-left reveal">
+      <span class="section-eyebrow">fundament procesu</span>
+      <h2 class="section-title">Jeden synbiotyk.<br><em>Niezwykła formuła.</em></h2>
+      <p class="synbio-lead">Długo szukałyśmy. Testowałyśmy na sobie. Ten synbiotyk to jedyny taki na świecie — połączenie nowoczesnej nauki z tysiącletnią mądrością ajurwedy.</p>
+      <div class="synbio-highlight">
+        <span class="synbio-highlight-icon">🌿</span>
+        <p>Synbiotyk + Triphala — innowacyjny duet, który działa w harmonii z Twoim organizmem. Nie znajdziesz tego nigdzie indziej.</p>
+      </div>
+    </div>
+    <div class="synbio-right reveal">
+      <div class="synbio-cards">
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🔬</span>
+          <h4>9 szczepów żywych bakterii</h4>
+          <p>100 miliardów CFU w każdej kapsułce — w uśpionej formie liofilizowanej, która budzi się dopiero w jelitach</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">💊</span>
+          <h4>Kapsułka dojelitowa</h4>
+          <p>Innowacyjna technologia przedłużonego uwalniania — bakterie przeżywają kwas żołądkowy i docierają tam, gdzie trzeba</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🌱</span>
+          <h4>Prebiotyk FOS w składzie</h4>
+          <p>Bakterie mają gotowy pokarm od razu po "przebudzeniu" — zasiedlają mikrobiom skuteczniej i trwalej</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🍃</span>
+          <h4>Triphala — mądrość wieków</h4>
+          <p>Ajurwedyjska mieszanka Amla, Bibhitaki i Haritaki z błonnikiem akacjowym — oczyszcza, reguluje, wzmacnia</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🛡️</span>
+          <h4>Jelita · odporność · nerwy</h4>
+          <p>Synergistyczne wsparcie układu trawiennego, immunologicznego i nerwowego — całościowo, nie punktowo</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🌙</span>
+          <h4>Dwie kapsułki wieczorem</h4>
+          <p>Prosta forma — po kolacji, zharmonizowana z nocnym rytmem regeneracji Twojego ciała</p>
+        </div>
+      </div>
+      <p class="synbio-tested">✦ Przebadany pod kątem skuteczności · sprawdzony przez nas osobiście ✦</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section class="pricing">
+  <div class="pricing-inner">
+
+    <div class="pricing-header reveal">
+      <span class="section-eyebrow" style="color: var(--earth);">transparentnie o kosztach</span>
+      <h2 class="section-title" style="color: var(--warm-white);">Wyzwanie jest<br><em>bezpłatne.</em></h2>
+      <p class="pricing-sub">Jedyne, o co prosimy — to zadbanie o siebie od środka. Warunkiem uczestnictwa jest stosowanie synbiotyku, który polecamy z pełnym przekonaniem.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+
+      <!-- lewa: kroki -->
+      <div class="pricing-steps">
+        <h3 class="pricing-steps-title">Jak dołączyć?</h3>
+        <div class="pricing-step">
+          <div class="step-num">01</div>
+          <div class="step-text">
+            <strong>Zapisujesz się</strong>
+            <span>Bezpłatnie. Bez zobowiązań.</span>
+          </div>
+        </div>
+        <div class="pricing-step">
+          <div class="step-num">02</div>
+          <div class="step-text">
+            <strong>Otrzymujesz dostęp do synbiotyku</strong>
+            <span>Ze specjalną ceną zarezerwowaną dla uczestniczek wyzwania</span>
+          </div>
+        </div>
+        <div class="pricing-step">
+          <div class="step-num">03</div>
+          <div class="step-text">
+            <strong>Zaczynasz 90 dni — z nami</strong>
+            <span>Krok po kroku, rytuał po rytuale, tydzień po tygodniu</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- prawa: cena i wartość -->
+      <div class="pricing-value-box">
+        <div class="pricing-free-badge">BEZPŁATNE</div>
+        <p class="pricing-what-free">Udział · Grupa · 12 live'ów · Codzienne wsparcie · PDF</p>
+
+        <div class="pricing-divider"></div>
+
+        <p class="pricing-condition-label">Jedyny koszt:</p>
+        <div class="pricing-cost-row">
+          <span class="pricing-amount">~188 zł</span>
+          <span class="pricing-per">/ miesiąc</span>
+        </div>
+        <p class="pricing-cost-detail">Pierwszy miesiąc: 207 zł · od 2. miesiąca: 188 zł<br>(10% z każdego zakupu wraca jako rabat na kolejny)</p>
+
+        <div class="pricing-coffee">
+          <span class="coffee-icon">☕</span>
+          <p>To <strong>mniej niż kawa na mieście</strong> — ok. 6 zł dziennie. Tyle samo co energetyk, słodka cola czy gotowy napój, który ani nie napełnia, ani nie leczy.<br><br>A za te 6 zł dostajesz synbiotyk, który <strong>zmieni Twoje życie</strong> — jelita odbudowane, skóra czysta, energia stabilna, nastrój wyrównany. 90 dni, które zostają z Tobą na zawsze.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- pasek wartości -->
+    <div class="pricing-value-bar reveal">
+      <p class="pricing-value-title">Co dostajesz za te 90 dni?</p>
+      <div class="pricing-value-items">
+        <div class="pricing-value-item">
+          <span>12 live'ów</span>
+          <small>z ekspertkami</small>
+        </div>
+        <div class="pricing-value-sep">+</div>
+        <div class="pricing-value-item">
+          <span>90 rytuałów</span>
+          <small>krok po kroku</small>
+        </div>
+        <div class="pricing-value-sep">+</div>
+        <div class="pricing-value-item">
+          <span>Codzienna</span>
+          <small>edukacja i motywacja</small>
+        </div>
+        <div class="pricing-value-sep">+</div>
+        <div class="pricing-value-item">
+          <span>Wspólnota</span>
+          <small>kobiet jak Ty</small>
+        </div>
+        <div class="pricing-value-sep">+</div>
+        <div class="pricing-value-item">
+          <span>Synbiotyk</span>
+          <small>który działa</small>
+        </div>
+        <div class="pricing-value-sep">=</div>
+        <div class="pricing-value-item pricing-value-result">
+          <span>Nowa Ty</span>
+          <small>za ~6 zł/dzień</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- ─── FINAL CTA ─── -->
 <section class="cta-final" id="formularz">
   <div class="cta-final-inner reveal">
@@ -1782,8 +2361,8 @@
     <h2 class="cta-title">Zaczynam.<br><em>90 dni. Jeden krok na raz.</em></h2>
     <p class="cta-desc">Dołącz do procesu i otrzymaj szczegóły – pakiet startowy, dostęp do grupy i to, co czeka Cię w środku.</p>
     <div class="cta-buttons">
-      <a href="#" class="btn-cta-main"><span>👉 Chcę dołączyć</span></a>
-      <a href="#" class="btn-cta-secondary"><span>Mam pytania – napisz do mnie</span></a>
+      <a href="https://forms.gle/gCNguN5zoKhNZeXY7" target="_blank" class="btn-cta-main"><span>👉 Chcę dołączyć</span></a>
+      <a href="mailto:antidote.joannamichalska@gmail.com" class="btn-cta-secondary"><span>Mam pytania – napisz do mnie</span></a>
     </div>
   </div>
 </section>
@@ -1791,9 +2370,14 @@
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="footer-brand">JELITA <span>90 dni</span></div>
-  <p class="footer-note">© 2026 · Wyzwanie · Powrót do równowagi</p>
+  <p class="footer-note">© 2026 · Wyzwanie · Powrót do równowagi<br>
+    <a href="https://www.canva.com/design/DAHBGS-GZ-s/eqT-ao-Ws8DSvZqQhNB_KQ/view?utm_content=DAHBGS-GZ-s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7e864b2b83" target="_blank" class="footer-regulamin">📄 Regulamin</a>
+  </p>
   <div class="footer-contact">
-   
+    Pytania? Napisz do nas 💌<br>
+    <span style="opacity:0.5; font-size:11px;">antidote.joannamichalska@gmail.com</span>
+  </div>
+</footer>
 
 <script>
   // Reveal on scroll
