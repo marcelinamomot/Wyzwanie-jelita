@@ -1,0 +1,2404 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JELITA – 90 dni powrotu do równowagi</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F2F8F4;
+    --sand: #D8EEE3;
+    --earth: #2ECC71;
+    --bark: #1A9E52;
+    --deep: #0D3320;
+    --moss: #27AE60;
+    --sage: #A9DFBF;
+    --blush: #A8D8EA;
+    --warm-white: #F7FDF9;
+    --sky: #D6F0F8;
+    --azure: #45B8D8;
+    --beige: #EEF0DC;
+    --spring-yellow: #F9F871;
+    --spring-pink: #FFB7C5;
+    --spring-lavender: #C3B1E1;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background-color: var(--cream);
+    color: var(--deep);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  /* ─── DATE BANNER ─── */
+  .date-banner {
+    background: linear-gradient(135deg, var(--earth) 0%, var(--moss) 100%);
+    padding: 14px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(46,204,113,0.2);
+  }
+
+  .date-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .date-badge {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--warm-white);
+    opacity: 0.9;
+  }
+
+  .date-banner-inner strong {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--warm-white);
+    letter-spacing: 0.5px;
+  }
+
+  .date-sep {
+    font-size: 16px;
+    color: rgba(255,255,255,0.4);
+  }
+
+  @media (max-width: 600px) {
+    .date-banner-inner { flex-direction: column; gap: 8px; }
+    .date-sep { display: none; }
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-left {
+    background: var(--deep);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px 80px 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-left::after {
+    content: '';
+    position: absolute;
+    right: -60px;
+    top: 0;
+    bottom: 0;
+    width: 120px;
+    background: var(--deep);
+    clip-path: polygon(0 0, 50% 0, 100% 50%, 50% 100%, 0 100%);
+    z-index: 3;
+  }
+
+  .hero-right {
+    background: linear-gradient(135deg, #0D3320 0%, #1A9E52 40%, #45B8D8 80%, #A8D8EA 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-right::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 65% 25%, rgba(255,255,255,0.2) 0%, transparent 45%),
+      radial-gradient(circle at 25% 75%, rgba(46,204,113,0.25) 0%, transparent 40%);
+  }
+
+  .organic-shape {
+    position: absolute;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    opacity: 0.15;
+  }
+  .shape-1 {
+    width: 320px; height: 320px;
+    background: #2ECC71;
+    top: -60px; right: -60px;
+    animation: float 8s ease-in-out infinite;
+  }
+  .shape-2 {
+    width: 200px; height: 200px;
+    background: #45B8D8;
+    bottom: 80px; left: -40px;
+    animation: float 10s ease-in-out infinite reverse;
+  }
+  .shape-3 {
+    width: 160px; height: 160px;
+    background: #0D3320;
+    top: 45%; left: 35%;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+  }
+
+  .hero-tagline {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.3s;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(56px, 7vw, 90px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1;
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.5s;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--earth);
+    display: block;
+  }
+
+  .hero-days {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(18px, 2vw, 24px);
+    font-weight: 300;
+    color: var(--sand);
+    letter-spacing: 2px;
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.7s;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1.8;
+    max-width: 380px;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 0.9s;
+  }
+
+  .hero-pillars {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 1.1s;
+  }
+
+  .pillar {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--earth);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pillar::before {
+    content: '◦';
+    font-size: 16px;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--earth);
+    color: var(--warm-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 18px 40px;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeUp 0.8s forwards 1.3s;
+  }
+
+  .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bark);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+
+  .btn-primary:hover::before { transform: translateX(0); }
+  .btn-primary span { position: relative; z-index: 1; }
+
+  .hero-visual-text {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 5;
+  }
+
+  .hero-big-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 180px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.08);
+    line-height: 1;
+    position: absolute;
+    bottom: -20px;
+    right: -10px;
+    letter-spacing: -10px;
+    user-select: none;
+  }
+
+  /* ─── SECTION DIVIDER ─── */
+  .divider {
+    height: 80px;
+    background: var(--deep);
+    clip-path: polygon(0 0, 100% 0, 100% 60%, 50% 100%, 0 60%);
+  }
+
+  /* ─── MANIFESTO ─── */
+  .manifesto {
+    background: var(--deep);
+    padding: 100px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .manifesto::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(74,155,111,0.12) 0%, transparent 70%);
+  }
+
+  .manifesto-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 40px;
+  }
+
+  .manifesto-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 52px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.4;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .manifesto-quote em {
+    color: var(--earth);
+    font-style: italic;
+  }
+
+  .manifesto-sub {
+    font-size: 15px;
+    color: var(--sand);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.9;
+    opacity: 0.8;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── SYMPTOMS ─── */
+  .symptoms {
+    background: var(--warm-white);
+    padding: 100px 80px;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1.2;
+  }
+
+  .section-title em {
+    font-style: italic;
+    color: var(--bark);
+  }
+
+  .symptoms-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .symptom-item {
+    background: var(--cream);
+    padding: 40px 36px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .symptom-item::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--earth);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+    transform-origin: left;
+  }
+
+  .symptom-item:hover::before { transform: scaleX(1); }
+  .symptom-item:hover { background: var(--warm-white); transform: translateY(-4px); }
+
+  .symptom-icon {
+    font-size: 28px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .symptom-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--deep);
+    line-height: 1.4;
+  }
+
+  .symptoms-cta {
+    text-align: center;
+    margin-top: 60px;
+  }
+
+  .symptoms-cta p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-style: italic;
+    color: var(--bark);
+    margin-bottom: 30px;
+  }
+
+  /* ─── HOW IT WORKS ─── */
+  .how {
+    background: var(--sky);
+    padding: 100px 80px;
+  }
+
+  .how-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .how-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1.2;
+    margin-bottom: 30px;
+  }
+
+  .how-content p {
+    font-size: 15px;
+    color: var(--bark);
+    line-height: 1.9;
+    margin-bottom: 40px;
+  }
+
+  .how-features {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .how-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+    background: var(--warm-white);
+    transition: transform 0.3s;
+  }
+
+  .how-feature:hover { transform: translateX(8px); }
+
+  .feature-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1;
+    min-width: 50px;
+  }
+
+  .feature-text h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--deep);
+    margin-bottom: 6px;
+  }
+
+  .feature-text p {
+    font-size: 14px;
+    color: var(--bark);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  /* ─── PHASES ─── */
+  .phases {
+    background: var(--deep);
+    padding: 100px 80px;
+  }
+
+  .phases-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    max-width: 1100px;
+    margin: 60px auto 0;
+  }
+
+  .phase-card {
+    padding: 56px 44px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-card:nth-child(1) { background: rgba(196,168,130,0.15); }
+  .phase-card:nth-child(2) { background: rgba(107,124,94,0.15); }
+  .phase-card:nth-child(3) { background: rgba(163,180,150,0.1); }
+
+  .phase-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.06);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .phase-week {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .phase-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--warm-white);
+    margin-bottom: 24px;
+    line-height: 1.2;
+  }
+
+  .phase-items {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .phase-items li {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .phase-items li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--earth);
+    font-size: 12px;
+  }
+
+  /* ─── WEEKLY RITUALS ─── */
+  .rituals {
+    background: var(--beige);
+    padding: 100px 80px;
+  }
+
+  .rituals-intro {
+    max-width: 700px;
+    margin: 0 auto 70px;
+    text-align: center;
+  }
+
+  .rituals-intro p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.9;
+    margin-top: 24px;
+  }
+
+  .weeks-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .week-card {
+    background: var(--warm-white);
+    padding: 44px 32px;
+    transition: all 0.4s;
+    cursor: default;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    min-height: 180px;
+  }
+
+  .week-card:hover {
+    background: var(--deep);
+    transform: translateY(-6px);
+    z-index: 2;
+    box-shadow: 0 20px 40px rgba(26,58,42,0.15);
+  }
+
+  .week-card:hover .week-intention { color: var(--moss); }
+  .week-card:hover .week-num { color: rgba(255,255,255,0.06); }
+
+  .week-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--sand);
+    line-height: 1;
+    transition: color 0.4s;
+    user-select: none;
+  }
+
+  .week-intention {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--bark);
+    line-height: 1.5;
+    transition: color 0.4s;
+    font-weight: 400;
+  }
+
+  /* ─── WHO IT'S FOR ─── */
+  .for-whom {
+    background: linear-gradient(160deg, #0D3320 0%, #1A9E52 60%, #0D3320 100%);
+    padding: 100px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .for-whom::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 30%, rgba(46,204,113,0.2) 0%, transparent 60%);
+  }
+
+  .for-whom .section-eyebrow { color: var(--blush); }
+
+  .for-whom .section-title {
+    color: var(--warm-white);
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .for-whom-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+    max-width: 1000px;
+    margin: 0 auto 60px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .for-item {
+    background: rgba(255,255,255,0.1);
+    padding: 40px 32px;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s;
+  }
+
+  .for-item:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateY(-4px);
+  }
+
+  .for-item-check {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 14px;
+    color: var(--warm-white);
+  }
+
+  .for-item p {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.7;
+  }
+
+  /* ─── WHAT YOU GET ─── */
+  .get {
+    background: var(--warm-white);
+    padding: 100px 80px;
+  }
+
+  .get-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .get-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-top: 50px;
+  }
+
+  .get-item {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 28px 32px;
+    background: var(--cream);
+    transition: all 0.3s;
+  }
+
+  .get-item:hover {
+    background: var(--deep);
+  }
+
+  .get-item:hover .get-item-title { color: var(--warm-white); }
+  .get-item:hover .get-item-desc { color: var(--sand); }
+
+  .get-icon {
+    font-size: 22px;
+    min-width: 40px;
+    text-align: center;
+  }
+
+  .get-item-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--deep);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    transition: color 0.3s;
+  }
+
+  .get-item-desc {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.6;
+    transition: color 0.3s;
+  }
+
+  .get-aside {
+    margin-top: 50px;
+  }
+
+  .get-aside-box {
+    background: var(--deep);
+    padding: 56px 48px;
+    color: var(--warm-white);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .get-aside-box::before {
+    content: '"';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px;
+    position: absolute;
+    top: -40px;
+    left: 20px;
+    color: rgba(74,155,111,0.12);
+    line-height: 1;
+    user-select: none;
+  }
+
+  .get-aside-box blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--sage);
+    line-height: 1.6;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .get-aside-box p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--earth);
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .supplement-box {
+    margin-top: 3px;
+    background: var(--earth);
+    padding: 40px 48px;
+  }
+
+  .supplement-box h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--warm-white);
+    margin-bottom: 12px;
+  }
+
+  .supplement-box p {
+    font-size: 13px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .supplement-badge {
+    display: inline-block;
+    background: var(--warm-white);
+    color: var(--bark);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 20px;
+  }
+
+  /* ─── FORM ─── */
+  .form-section {
+    background: var(--cream);
+    padding: 100px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-section::before {
+    content: 'DOŁĄCZAM';
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 200px;
+    font-weight: 300;
+    color: rgba(196,168,130,0.06);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    user-select: none;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .form-container {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .form-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .form-header p {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.9;
+    margin-top: 20px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+
+  .form-field {
+    background: var(--warm-white);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-field.full {
+    grid-column: 1 / -1;
+  }
+
+  .form-field label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth);
+    font-weight: 400;
+  }
+
+  .form-field input,
+  .form-field select {
+    background: none;
+    border: none;
+    outline: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--deep);
+    padding: 4px 0;
+    border-bottom: 1px solid var(--sand);
+    transition: border-color 0.3s;
+  }
+
+  .form-field input:focus,
+  .form-field select:focus {
+    border-bottom-color: var(--earth);
+  }
+
+  .checkboxes {
+    background: var(--warm-white);
+    padding: 36px 28px;
+    margin-bottom: 3px;
+  }
+
+  .checkboxes-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+  }
+
+  .checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--earth);
+    cursor: pointer;
+  }
+
+  .checkbox-item span {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--bark);
+  }
+
+  .radio-group {
+    background: var(--warm-white);
+    padding: 36px 28px;
+    margin-bottom: 3px;
+  }
+
+  .radio-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .radio-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    padding: 14px 18px;
+    background: var(--cream);
+    transition: background 0.2s;
+  }
+
+  .radio-item:hover { background: var(--sand); }
+
+  .radio-item input[type="radio"] {
+    accent-color: var(--earth);
+  }
+
+  .radio-item span {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--deep);
+  }
+
+  .form-submit {
+    background: var(--deep);
+    border: none;
+    width: 100%;
+    padding: 26px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--warm-white);
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    margin-top: 3px;
+  }
+
+  .form-submit::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--earth);
+    transform: translateY(100%);
+    transition: transform 0.4s;
+  }
+
+  .form-submit:hover::before { transform: translateY(0); }
+  .form-submit span { position: relative; z-index: 1; }
+
+  .form-note {
+    text-align: center;
+    margin-top: 24px;
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--bark);
+    opacity: 0.7;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep);
+    padding: 60px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+
+  .footer-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--warm-white);
+  }
+
+  .footer-brand span {
+    color: var(--earth);
+    font-style: italic;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--sand);
+    opacity: 0.5;
+    text-align: center;
+  }
+
+  .footer-regulamin {
+    display: inline-block;
+    margin-top: 10px;
+    color: var(--earth);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(46,204,113,0.3);
+    padding-bottom: 2px;
+    transition: color 0.3s, border-color 0.3s;
+    opacity: 1;
+  }
+
+  .footer-regulamin:hover {
+    color: var(--moss);
+    border-color: var(--moss);
+  }
+
+  .footer-contact {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--earth);
+    text-align: right;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s, transform 0.8s;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── RESPONSIVE ─── */
+  /* ─── SYNBIOTYK ─── */
+  .synbio {
+    background: var(--warm-white);
+    padding: 100px 80px;
+  }
+
+  .synbio-inner {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: start;
+  }
+
+  .synbio-lead {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.9;
+    margin: 24px 0 32px;
+  }
+
+  .synbio-highlight {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: linear-gradient(135deg, var(--sand), var(--sky));
+    padding: 24px 28px;
+    border-left: 4px solid var(--earth);
+  }
+
+  .synbio-highlight-icon { font-size: 22px; margin-top: 2px; }
+
+  .synbio-highlight p {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--deep);
+    line-height: 1.7;
+  }
+
+  .synbio-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+  }
+
+  .synbio-card {
+    background: var(--cream);
+    padding: 28px 26px;
+    transition: all 0.3s;
+  }
+
+  .synbio-card:hover {
+    background: var(--deep);
+    transform: translateY(-4px);
+  }
+
+  .synbio-card:hover h4,
+  .synbio-card:hover p { color: var(--warm-white); }
+
+  .synbio-card-icon { font-size: 24px; display: block; margin-bottom: 12px; }
+
+  .synbio-card h4 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: var(--deep);
+    margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+
+  .synbio-card p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--bark);
+    line-height: 1.6;
+    transition: color 0.3s;
+  }
+
+  .synbio-tested {
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--earth);
+    margin-top: 20px;
+    opacity: 0.8;
+  }
+
+  /* ─── PRICING ─── */
+  .pricing {
+    background: var(--deep);
+    padding: 100px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pricing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(circle at 20% 50%, rgba(46,204,113,0.08) 0%, transparent 50%),
+      radial-gradient(circle at 80% 50%, rgba(69,184,216,0.06) 0%, transparent 50%);
+  }
+
+  .pricing-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .pricing-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .pricing-sub {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.9;
+    max-width: 600px;
+    margin: 24px auto 0;
+  }
+
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3px;
+    margin-bottom: 3px;
+  }
+
+  /* kroki */
+  .pricing-steps {
+    background: rgba(255,255,255,0.04);
+    padding: 52px 48px;
+  }
+
+  .pricing-steps-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    color: var(--warm-white);
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+
+  .pricing-step {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    margin-bottom: 36px;
+  }
+
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    color: var(--earth);
+    line-height: 1;
+    min-width: 44px;
+  }
+
+  .step-text {
+    padding-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .step-text strong {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--warm-white);
+  }
+
+  .step-text span {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.6;
+  }
+
+  /* value box */
+  .pricing-value-box {
+    background: rgba(46,204,113,0.08);
+    border: 1px solid rgba(46,204,113,0.2);
+    padding: 52px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .pricing-free-badge {
+    display: inline-block;
+    background: var(--earth);
+    color: var(--warm-white);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    padding: 10px 24px;
+    align-self: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .pricing-what-free {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.7;
+    margin-bottom: 32px;
+  }
+
+  .pricing-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin-bottom: 28px;
+  }
+
+  .pricing-condition-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth);
+    margin-bottom: 12px;
+  }
+
+  .pricing-cost-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .pricing-amount {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 64px;
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1;
+  }
+
+  .pricing-per {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--sage);
+  }
+
+  .pricing-cost-detail {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.7;
+    opacity: 0.7;
+    margin-bottom: 28px;
+  }
+
+  .pricing-coffee {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    background: rgba(255,255,255,0.05);
+    padding: 20px 24px;
+  }
+
+  .coffee-icon { font-size: 22px; margin-top: 2px; }
+
+  .pricing-coffee p {
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.7;
+  }
+
+  .pricing-coffee strong {
+    color: var(--warm-white);
+    font-weight: 500;
+  }
+
+  /* pasek wartości */
+  .pricing-value-bar {
+    background: rgba(255,255,255,0.04);
+    padding: 44px 48px;
+  }
+
+  .pricing-value-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--earth);
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .pricing-value-items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+
+  .pricing-value-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0 28px;
+    text-align: center;
+  }
+
+  .pricing-value-item span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--warm-white);
+    line-height: 1.2;
+  }
+
+  .pricing-value-item small {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--sage);
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .pricing-value-sep {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    color: var(--earth);
+    opacity: 0.6;
+    padding: 0 4px;
+  }
+
+  .pricing-value-result span {
+    color: var(--earth) !important;
+    font-weight: 600 !important;
+  }
+
+  .pricing-value-result small {
+    color: var(--moss) !important;
+  }
+
+  @media (max-width: 900px) {
+    .synbio { padding: 80px 40px; }
+    .synbio-inner { grid-template-columns: 1fr; gap: 50px; }
+    .synbio-cards { grid-template-columns: 1fr; }
+    .pricing { padding: 80px 40px; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-value-items { flex-direction: column; gap: 16px; }
+    .pricing-value-sep { transform: rotate(90deg); }
+    .pricing-value-bar { padding: 40px 28px; }
+  }
+
+  /* ─── ILLUSTRATIONS ─── */
+  .symptom-illustration {
+    max-width: 320px;
+    margin: 0 auto 60px;
+    text-align: center;
+  }
+
+  .illus-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 12px 32px rgba(46,204,113,0.15));
+  }
+
+  .illus-caption {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--bark);
+    margin-top: 12px;
+    opacity: 0.7;
+  }
+
+  .manifesto-visual {
+    margin-bottom: 50px;
+  }
+
+  .manifesto-svg {
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    filter: drop-shadow(0 0 20px rgba(46,204,113,0.2));
+  }
+
+  .face-illustration {
+    margin: 0 auto 50px;
+    max-width: 540px;
+  }
+
+  .face-svg {
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 8px 24px rgba(0,0,0,0.15));
+  }
+
+  /* ─── FINAL CTA ─── */
+  .cta-final {
+    background: var(--deep);
+    padding: 120px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-final::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+      radial-gradient(circle at 30% 50%, rgba(74,155,111,0.12) 0%, transparent 50%),
+      radial-gradient(circle at 70% 50%, rgba(123,190,207,0.08) 0%, transparent 50%);
+  }
+
+  .cta-final-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 300;
+    color: var(--warm-white);
+    line-height: 1.15;
+    margin: 20px 0 28px;
+  }
+
+  .cta-title em {
+    font-style: italic;
+    color: var(--moss);
+    display: block;
+  }
+
+  .cta-desc {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--sage);
+    line-height: 1.9;
+    margin-bottom: 56px;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-cta-main {
+    display: inline-block;
+    background: var(--earth);
+    color: var(--warm-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 22px 52px;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-cta-main::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--bark);
+    transform: translateX(-100%);
+    transition: transform 0.4s;
+  }
+
+  .btn-cta-main:hover::before { transform: translateX(0); }
+  .btn-cta-main span { position: relative; z-index: 1; }
+
+  .btn-cta-secondary {
+    display: inline-block;
+    background: transparent;
+    color: var(--sage);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    padding: 22px 36px;
+    text-decoration: none;
+    border: 1px solid rgba(168,212,188,0.3);
+    transition: all 0.3s;
+  }
+
+  .btn-cta-secondary span { position: relative; z-index: 1; }
+  .btn-cta-secondary:hover {
+    border-color: var(--moss);
+    color: var(--warm-white);
+    background: rgba(107,190,160,0.1);
+  }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { padding: 60px 40px; }
+    .hero-left::after { display: none; }
+    .hero-right { height: 300px; }
+    .hero-big-number { display: none; }
+    .symptoms-grid { grid-template-columns: 1fr 1fr; }
+    .how-grid { grid-template-columns: 1fr; gap: 40px; }
+    .phases-grid { grid-template-columns: 1fr; }
+    .weeks-strip { grid-template-columns: repeat(2, 1fr); }
+    .for-whom-grid { grid-template-columns: 1fr; }
+    .get-grid { grid-template-columns: 1fr; }
+    footer { flex-direction: column; text-align: center; }
+    .footer-contact { text-align: center; }
+    .manifesto { padding: 80px 40px; }
+    .symptoms { padding: 80px 40px; }
+    .how { padding: 80px 40px; }
+    .phases { padding: 80px 40px; }
+    .rituals { padding: 80px 40px; }
+    .for-whom { padding: 80px 40px; }
+    .get { padding: 80px 40px; }
+    footer { padding: 50px 40px; }
+    .cta-final { padding: 80px 40px; }
+    .cta-buttons { flex-direction: column; align-items: center; }
+  }
+
+  @media (max-width: 600px) {
+    .symptoms-grid { grid-template-columns: 1fr; }
+    .weeks-strip { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ─── DATE BANNER ─── -->
+<div class="date-banner">
+  <div class="date-banner-inner">
+    <span class="date-badge">📅 Live powitalny</span>
+    <strong>22.02.2026</strong>
+    <span class="date-sep">|</span>
+    <span class="date-badge">🚀 Start wyzwania</span>
+    <strong>23.02.2026</strong>
+  </div>
+</div>
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="hero-left">
+    <p class="hero-tagline">Wyzwanie • 2026</p>
+    <h1 class="hero-title">
+      JELITA
+      <em>90 dni</em>
+    </h1>
+    <p class="hero-days">powrotu do równowagi</p>
+    <p class="hero-subtitle">
+      To nie jest dieta. To nie jest cud. To świadomy proces, który wspiera jelita i całe ciało – krok po kroku, w Twoim tempie.
+    </p>
+    <div class="hero-pillars">
+      <span class="pillar">ciało</span>
+      <span class="pillar">odporność</span>
+      <span class="pillar">emocje</span>
+      <span class="pillar">energia</span>
+    </div>
+    <a href="https://forms.gle/gCNguN5zoKhNZeXY7" target="_blank" class="btn-primary"><span>Dołączam do procesu →</span></a>
+  </div>
+  <div class="hero-right">
+    <div class="organic-shape shape-1"></div>
+    <div class="organic-shape shape-2"></div>
+    <div class="organic-shape shape-3"></div>
+    <div class="hero-big-number">90</div>
+  </div>
+</section>
+
+<!-- ─── MANIFESTO ─── -->
+<section class="manifesto">
+  <!-- SVG: botaniczna abstrakcja jelit - zdrowe, kwitnące -->
+  <div class="manifesto-visual reveal">
+    <svg viewBox="0 0 500 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="manifesto-svg">
+      <!-- jelita jako organiczne, kwitnące ścieżki -->
+      <!-- główna pętla jelita grubego -->
+      <path d="M60 110 Q60 40 130 40 Q200 40 200 80 Q200 120 160 130 Q120 140 120 170 Q120 200 170 200 Q220 200 240 170 Q260 140 300 140 Q340 140 360 170 Q380 200 420 190 Q460 180 460 140 Q460 100 420 90 Q380 80 360 110" stroke="#2ECC71" stroke-width="22" stroke-linecap="round" fill="none" opacity="0.9"/>
+      <path d="M60 110 Q60 40 130 40 Q200 40 200 80 Q200 120 160 130 Q120 140 120 170 Q120 200 170 200 Q220 200 240 170 Q260 140 300 140 Q340 140 360 170 Q380 200 420 190 Q460 180 460 140 Q460 100 420 90 Q380 80 360 110" stroke="#A9DFBF" stroke-width="10" stroke-linecap="round" fill="none" opacity="0.5"/>
+      <!-- drobne kosmki - villi -->
+      <line x1="80" y1="96" x2="75" y2="80" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="100" y1="75" x2="98" y2="58" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="130" y1="43" x2="130" y2="25" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="165" y1="44" x2="168" y2="27" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="200" y1="60" x2="205" y2="44" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="200" y1="100" x2="217" y2="92" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="175" y1="135" x2="167" y2="150" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="145" y1="165" x2="138" y2="180" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="175" y1="200" x2="175" y2="215" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="240" y1="200" x2="240" y2="215" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="300" y1="145" x2="300" y2="128" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="350" y1="145" x2="353" y2="128" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="385" y1="195" x2="390" y2="210" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="440" y1="185" x2="450" y2="198" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="460" y1="140" x2="476" y2="138" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="455" y1="100" x2="470" y2="95" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="410" y1="88" x2="413" y2="72" stroke="#27AE60" stroke-width="2.5" stroke-linecap="round"/>
+      <!-- kwiatki na jelitach - oznaka zdrowia -->
+      <circle cx="130" cy="40" r="7" fill="#FFB7C5"/>
+      <circle cx="130" cy="40" r="3.5" fill="#FFF5F7"/>
+      <circle cx="240" cy="170" r="7" fill="#F9F871"/>
+      <circle cx="240" cy="170" r="3.5" fill="#FFFDE0"/>
+      <circle cx="420" cy="190" r="6" fill="#FFB7C5"/>
+      <circle cx="420" cy="190" r="3" fill="#FFF5F7"/>
+      <circle cx="200" cy="80" r="5" fill="#2ECC71"/>
+      <circle cx="200" cy="80" r="2.5" fill="#F2F8F4"/>
+      <!-- bakterie jako małe kółeczka - dobra flora -->
+      <circle cx="150" cy="110" r="4" fill="#45B8D8" opacity="0.8"/>
+      <circle cx="165" cy="125" r="3" fill="#45B8D8" opacity="0.6"/>
+      <circle cx="280" cy="155" r="4" fill="#45B8D8" opacity="0.8"/>
+      <circle cx="320" cy="148" r="3" fill="#2ECC71" opacity="0.7"/>
+      <circle cx="390" cy="145" r="4" fill="#45B8D8" opacity="0.8"/>
+      <circle cx="435" cy="130" r="3" fill="#2ECC71" opacity="0.7"/>
+    </svg>
+  </div>
+  <p class="manifesto-eyebrow">dlaczego jelita?</p>
+  <h2 class="manifesto-quote reveal">
+    Twoje jelita to nie jest „tylko brzuch".<br>
+    To <em>centrum odporności, emocji, hormonów</em><br>
+    i energii życiowej.
+  </h2>
+  <p class="manifesto-sub reveal">
+    70% układu odpornościowego. Centrum produkcji serotoniny. Oś jelita–mózg–skóra. Jeśli masz dość szukania odpowiedzi na swoje objawy — zacznij tutaj.
+  </p>
+</section>
+
+<!-- ─── SYMPTOMS ─── -->
+<section class="symptoms">
+  <div class="section-header reveal">
+    <span class="section-eyebrow">czy to brzmi znajomo?</span>
+    <h2 class="section-title">Ciało mówi do Ciebie<br><em>od dawna…</em></h2>
+  </div>
+
+  <!-- SVG: kobieta trzymająca się za brzuch -->
+  <div class="symptom-illustration reveal">
+    <svg viewBox="0 0 340 380" fill="none" xmlns="http://www.w3.org/2000/svg" class="illus-svg">
+      <!-- tło organiczne -->
+      <ellipse cx="170" cy="200" rx="145" ry="165" fill="#D6F0F8" opacity="0.5"/>
+      <ellipse cx="170" cy="195" rx="120" ry="145" fill="#A8D8EA" opacity="0.35"/>
+      <!-- ciało kobiety - uproszczona sylwetka -->
+      <!-- głowa -->
+      <ellipse cx="170" cy="80" rx="38" ry="42" fill="#FDDCB5"/>
+      <!-- włosy -->
+      <ellipse cx="170" cy="62" rx="42" ry="30" fill="#5C3D1E"/>
+      <ellipse cx="138" cy="78" rx="14" ry="28" fill="#5C3D1E"/>
+      <ellipse cx="202" cy="78" rx="14" ry="28" fill="#5C3D1E"/>
+      <!-- szyja -->
+      <rect x="160" y="118" width="20" height="22" rx="8" fill="#FDDCB5"/>
+      <!-- tułów - sukienka wiosenna -->
+      <path d="M125 138 Q130 130 145 128 L152 135 L170 132 L188 135 L195 128 Q210 130 215 138 L228 240 Q200 255 170 255 Q140 255 112 240 Z" fill="#2ECC71"/>
+      <!-- detale sukienki -->
+      <path d="M145 128 Q170 145 195 128" stroke="#27AE60" stroke-width="1.5" fill="none"/>
+      <!-- ręce -->
+      <!-- lewa ręka - trzyma brzuch -->
+      <path d="M125 150 Q105 165 100 185 Q98 200 108 210 L125 200" stroke="#FDDCB5" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <!-- prawa ręka - trzyma brzuch -->
+      <path d="M215 150 Q235 165 240 185 Q242 200 232 210 L215 200" stroke="#FDDCB5" stroke-width="18" stroke-linecap="round" fill="none"/>
+      <!-- dłonie na brzuchu -->
+      <ellipse cx="118" cy="207" rx="16" ry="12" fill="#FDDCB5"/>
+      <ellipse cx="222" cy="207" rx="16" ry="12" fill="#FDDCB5"/>
+      <!-- nogi -->
+      <path d="M145 255 L138 320 Q137 330 148 330 L158 330 Q165 330 165 320 L162 255" fill="#2ECC71"/>
+      <path d="M195 255 L202 320 Q203 330 192 330 L182 330 Q175 330 175 320 L178 255" fill="#2ECC71"/>
+      <!-- stopy -->
+      <ellipse cx="153" cy="332" rx="14" ry="7" fill="#FDDCB5"/>
+      <ellipse cx="187" cy="332" rx="14" ry="7" fill="#FDDCB5"/>
+      <!-- twarz - ból, grymas -->
+      <ellipse cx="156" cy="82" rx="4" ry="5" fill="#5C3D1E"/>
+      <ellipse cx="184" cy="82" rx="4" ry="5" fill="#5C3D1E"/>
+      <!-- brwi zmarszczone -->
+      <path d="M150 72 Q156 68 163 72" stroke="#5C3D1E" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <path d="M177 72 Q184 68 190 72" stroke="#5C3D1E" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+      <!-- usta - ból -->
+      <path d="M160 98 Q170 94 180 98" stroke="#C0825A" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <!-- symbol bólu - zygzak -->
+      <path d="M165 175 L172 162 L179 175 L186 162 L193 175" stroke="#E74C3C" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+      <!-- małe kwiaty wiosenne wokół -->
+      <circle cx="70" cy="130" r="8" fill="#FFB7C5" opacity="0.7"/>
+      <circle cx="70" cy="130" r="4" fill="#FFF" opacity="0.9"/>
+      <circle cx="58" cy="145" r="5" fill="#F9F871" opacity="0.8"/>
+      <circle cx="270" cy="120" r="9" fill="#FFB7C5" opacity="0.7"/>
+      <circle cx="270" cy="120" r="4" fill="#FFF" opacity="0.9"/>
+      <circle cx="282" cy="145" r="6" fill="#2ECC71" opacity="0.7"/>
+      <!-- liście -->
+      <ellipse cx="62" cy="155" rx="10" ry="5" fill="#27AE60" opacity="0.6" transform="rotate(-30 62 155)"/>
+      <ellipse cx="278" cy="155" rx="10" ry="5" fill="#27AE60" opacity="0.6" transform="rotate(30 278 155)"/>
+    </svg>
+    <p class="illus-caption">Twoje jelita czekają na pomoc</p>
+  </div>
+
+  <div class="symptoms-grid reveal">
+    <div class="symptom-item">
+      <span class="symptom-icon">🌬️</span>
+      <p class="symptom-text">Wzdęcia i dyskomfort po jedzeniu – bez wyraźnej przyczyny</p>
+    </div>
+    <div class="symptom-item">
+      <span class="symptom-icon">🧠</span>
+      <p class="symptom-text">Mgła w głowie, trudności z koncentracją, uczucie „odłączenia"</p>
+    </div>
+    <div class="symptom-item">
+      <span class="symptom-icon">⚡</span>
+      <p class="symptom-text">Chroniczne zmęczenie mimo wystarczającej ilości snu</p>
+    </div>
+    <div class="symptom-item">
+      <span class="symptom-icon">🦠</span>
+      <p class="symptom-text">Obniżona odporność – infekcje, które wracają co kilka tygodni</p>
+    </div>
+    <div class="symptom-item">
+      <span class="symptom-icon">😶</span>
+      <p class="symptom-text">Spadki nastroju, drażliwość, lęk bez wyraźnego powodu</p>
+    </div>
+    <div class="symptom-item">
+      <span class="symptom-icon">✨</span>
+      <p class="symptom-text">Problemy skórne – trądzik, przebarwienia, brak blasku</p>
+    </div>
+  </div>
+  <div class="symptoms-cta reveal">
+    <p>Jeśli choć jedno zdanie jest o Tobie — ten proces jest dla Ciebie.</p>
+    <a href="https://forms.gle/gCNguN5zoKhNZeXY7" target="_blank" class="btn-primary"><span>Chcę wziąć udział →</span></a>
+  </div>
+</section>
+
+<!-- ─── HOW IT WORKS ─── -->
+<section class="how">
+  <div class="how-grid">
+    <div class="how-content reveal">
+      <span class="section-eyebrow">jak to działa?</span>
+      <h2>Jeden rytuał tygodniowo.<br>Jedna zmiana naraz.<br>Trwały efekt.</h2>
+      <p>Nie rzucamy Cię na głęboką wodę. Każdy tydzień to jeden konkretny krok — lekki, wykonalny i oparty na nauce. Dzięki temu ciało ma czas, żeby naprawdę się przebudować.</p>
+    </div>
+    <div class="how-features reveal">
+      <div class="how-feature">
+        <span class="feature-num">01</span>
+        <div class="feature-text">
+          <h4>Live co tydzień</h4>
+          <p>Edukacja, Q&A i motywacja na żywo – z ekspertkami od jelit i skóry</p>
+        </div>
+      </div>
+      <div class="how-feature">
+        <span class="feature-num">02</span>
+        <div class="feature-text">
+          <h4>Codzienny tip + motywacja</h4>
+          <p>Krótki, praktyczny impuls każdego dnia w zamkniętej grupie</p>
+        </div>
+      </div>
+      <div class="how-feature">
+        <span class="feature-num">03</span>
+        <div class="feature-text">
+          <h4>Suplementacja jako fundament</h4>
+          <p>Synbiotyk o udowodnionym działaniu – naturalny filar całego 90-dniowego procesu odbudowy</p>
+        </div>
+      </div>
+      <div class="how-feature">
+        <span class="feature-num">04</span>
+        <div class="feature-text">
+          <h4>Prywatna grupa</h4>
+          <p>Wspólnota kobiet, które rozumieją – bez oceniania, z prawdziwym wsparciem</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PHASES ─── -->
+<section class="phases">
+  <div class="section-header reveal">
+    <span class="section-eyebrow" style="color: var(--earth);">plan 90 dni</span>
+    <h2 class="section-title" style="color: var(--warm-white);">Trzy etapy.<br><em>Jeden kierunek.</em></h2>
+  </div>
+  <div class="phases-grid reveal">
+    <div class="phase-card">
+      <span class="phase-num">I</span>
+      <span class="phase-week">Tydzień 1–4</span>
+      <h3 class="phase-title">Regulacja</h3>
+      <ul class="phase-items">
+        <li>Jelita jako centrum życia</li>
+        <li>Oś jelita–mózg: stres i oddech</li>
+        <li>Odżywianie wspierające mikrobiom</li>
+        <li>Odporność i stany zapalne</li>
+        <li>Pierwsze rytuały: nawodnienie, uważne jedzenie</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <span class="phase-num">II</span>
+      <span class="phase-week">Tydzień 5–8</span>
+      <h3 class="phase-title">Odbudowa</h3>
+      <ul class="phase-items">
+        <li>Autoimmunologia i mikrobiom</li>
+        <li>Wątroba + jelita: detoks z głową</li>
+        <li>Ruch i perystaltyka</li>
+        <li>Sen jako fillar regeneracji</li>
+        <li>Suplementacja Detox jako wsparcie</li>
+      </ul>
+    </div>
+    <div class="phase-card">
+      <span class="phase-num">III</span>
+      <span class="phase-week">Tydzień 9–12</span>
+      <h3 class="phase-title">Integracja</h3>
+      <ul class="phase-items">
+        <li>Hormony kobiety – równowaga</li>
+        <li>Jelita i podświadomość</li>
+        <li>Utrwalenie – zostaje to, co działa</li>
+        <li>Celebracja ciała i decyzja na przyszłość</li>
+        <li>Świadectwa i transformacje</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── RITUALS ─── -->
+<section class="rituals">
+  <div class="rituals-intro reveal">
+    <span class="section-eyebrow">rytuały tygodniowe</span>
+    <h2 class="section-title">Jeden krok.<br><em>Jeden tydzień.</em></h2>
+    <p>Zamiast przytłaczać Cię listą zmian – dajemy Ci jeden rytm na tydzień. Każdy jest przemyślany, oparty na badaniach i zaprojektowany tak, żebyś nie musiała walczyć z samą sobą.</p>
+  </div>
+  <div class="weeks-strip reveal">
+    <div class="week-card">
+      <div class="week-num">01</div>
+      <p class="week-intention">Wyciszenie stanu zapalnego</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">02</div>
+      <p class="week-intention">Zasiedlanie mikrobiomu</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">03</div>
+      <p class="week-intention">Regulacja wypróżnień</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">04</div>
+      <p class="week-intention">Redukcja wzdęć</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">05</div>
+      <p class="week-intention">Uspokojenie układu odpornościowego</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">06</div>
+      <p class="week-intention">Oczyszczanie bez przeciążania</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">07</div>
+      <p class="week-intention">Pobudzenie perystaltyki</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">08</div>
+      <p class="week-intention">Odbudowa mikrobioty</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">09</div>
+      <p class="week-intention">Równowaga hormonalna kobiety</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">10</div>
+      <p class="week-intention">Rozluźnienie osi jelita–mózg</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">11</div>
+      <p class="week-intention">Utrwalenie – zostaje to, co działa</p>
+    </div>
+    <div class="week-card">
+      <div class="week-num">12</div>
+      <p class="week-intention">Integracja i świadoma decyzja</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOR WHOM ─── -->
+<section class="for-whom">
+  <span class="section-eyebrow">dla kogo?</span>
+  <h2 class="section-title reveal">Ten proces jest dla Ciebie,<br><em>jeśli…</em></h2>
+
+  <!-- SVG: dwie twarze - przed i po -->
+  <div class="face-illustration reveal">
+    <svg viewBox="0 0 520 220" fill="none" xmlns="http://www.w3.org/2000/svg" class="face-svg">
+      <!-- TWARZ 1: z trądzikiem (przed) -->
+      <g transform="translate(30, 10)">
+        <!-- tło -->
+        <ellipse cx="100" cy="105" rx="90" ry="100" fill="rgba(255,255,255,0.08)"/>
+        <!-- głowa -->
+        <ellipse cx="100" cy="110" rx="58" ry="66" fill="#F5C5A0"/>
+        <!-- włosy -->
+        <ellipse cx="100" cy="60" rx="62" ry="38" fill="#8B4513"/>
+        <ellipse cx="52" cy="90" rx="18" ry="38" fill="#8B4513"/>
+        <ellipse cx="148" cy="90" rx="18" ry="38" fill="#8B4513"/>
+        <!-- oczy smutne -->
+        <ellipse cx="82" cy="100" rx="9" ry="10" fill="white"/>
+        <ellipse cx="118" cy="100" rx="9" ry="10" fill="white"/>
+        <ellipse cx="82" cy="102" rx="6" ry="7" fill="#5C3D1E"/>
+        <ellipse cx="118" cy="102" rx="6" ry="7" fill="#5C3D1E"/>
+        <ellipse cx="80" cy="100" rx="2.5" ry="2.5" fill="white"/>
+        <ellipse cx="116" cy="100" rx="2.5" ry="2.5" fill="white"/>
+        <!-- brwi smutne -->
+        <path d="M72 88 Q82 83 92 88" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <path d="M108 88 Q118 83 128 88" stroke="#8B4513" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- nos -->
+        <path d="M96 115 Q100 125 104 115" stroke="#C9956A" stroke-width="2" fill="none"/>
+        <!-- usta smutne -->
+        <path d="M86 138 Q100 132 114 138" stroke="#C0825A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <!-- trądzik - czerwone krostki -->
+        <circle cx="70" cy="108" r="4.5" fill="#E74C3C" opacity="0.9"/>
+        <circle cx="73" cy="120" r="3.5" fill="#C0392B" opacity="0.85"/>
+        <circle cx="130" cy="112" r="4" fill="#E74C3C" opacity="0.9"/>
+        <circle cx="125" cy="125" r="3" fill="#C0392B" opacity="0.8"/>
+        <circle cx="90" cy="145" r="3.5" fill="#E74C3C" opacity="0.85"/>
+        <circle cx="110" cy="142" r="3" fill="#C0392B" opacity="0.8"/>
+        <circle cx="78" cy="135" r="2.5" fill="#E74C3C" opacity="0.7"/>
+        <circle cx="122" cy="135" r="2.5" fill="#E74C3C" opacity="0.7"/>
+        <!-- etykieta -->
+        <text x="100" y="200" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="DM Sans,sans-serif" font-size="12" font-weight="300" letter-spacing="2">PRZED</text>
+      </g>
+
+      <!-- STRZAŁKA PRZEMIANY -->
+      <g transform="translate(230, 85)">
+        <path d="M0 25 L35 25" stroke="#2ECC71" stroke-width="3" stroke-linecap="round"/>
+        <path d="M25 15 L38 25 L25 35" stroke="#2ECC71" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <!-- kwiaty przy strzałce -->
+        <circle cx="18" cy="12" r="5" fill="#FFB7C5" opacity="0.9"/>
+        <circle cx="18" cy="12" r="2.5" fill="white" opacity="0.9"/>
+        <circle cx="18" cy="38" r="4" fill="#F9F871" opacity="0.9"/>
+        <circle cx="18" cy="38" r="2" fill="white" opacity="0.9"/>
+        <text x="19" y="55" text-anchor="middle" fill="rgba(255,255,255,0.4)" font-family="DM Sans,sans-serif" font-size="9" letter-spacing="1">90 dni</text>
+      </g>
+
+      <!-- TWARZ 2: czysta skóra (po) -->
+      <g transform="translate(295, 10)">
+        <!-- tło - delikatna aureola -->
+        <ellipse cx="100" cy="105" rx="90" ry="100" fill="rgba(46,204,113,0.12)"/>
+        <!-- blask wokół twarzy -->
+        <ellipse cx="100" cy="110" rx="68" ry="76" fill="rgba(249,248,113,0.08)"/>
+        <!-- głowa -->
+        <ellipse cx="100" cy="110" rx="58" ry="66" fill="#F5C5A0"/>
+        <!-- włosy - lśniące -->
+        <ellipse cx="100" cy="60" rx="62" ry="38" fill="#5C3D1E"/>
+        <ellipse cx="52" cy="90" rx="18" ry="38" fill="#5C3D1E"/>
+        <ellipse cx="148" cy="90" rx="18" ry="38" fill="#5C3D1E"/>
+        <!-- highlight na włosach -->
+        <path d="M80 50 Q100 42 120 50" stroke="rgba(255,255,255,0.2)" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <!-- oczy radosne -->
+        <ellipse cx="82" cy="100" rx="9" ry="10" fill="white"/>
+        <ellipse cx="118" cy="100" rx="9" ry="10" fill="white"/>
+        <ellipse cx="82" cy="102" rx="6" ry="7" fill="#3D2B1F"/>
+        <ellipse cx="118" cy="102" rx="6" ry="7" fill="#3D2B1F"/>
+        <ellipse cx="80" cy="99" rx="2.5" ry="2.5" fill="white"/>
+        <ellipse cx="116" cy="99" rx="2.5" ry="2.5" fill="white"/>
+        <!-- rzęsy - radość -->
+        <path d="M73 92 Q82 88 91 92" stroke="#3D2B1F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M109 92 Q118 88 127 92" stroke="#3D2B1F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <!-- nos -->
+        <path d="M96 115 Q100 125 104 115" stroke="#C9956A" stroke-width="2" fill="none"/>
+        <!-- usta - uśmiech -->
+        <path d="M85 137 Q100 148 115 137" stroke="#D4845A" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+        <!-- policzki różowe - zdrowie -->
+        <ellipse cx="72" cy="125" rx="14" ry="9" fill="#FFB7C5" opacity="0.3"/>
+        <ellipse cx="128" cy="125" rx="14" ry="9" fill="#FFB7C5" opacity="0.3"/>
+        <!-- iskierki - blask skóry -->
+        <path d="M58 78 L62 72 L66 78 L60 82 Z" fill="#F9F871" opacity="0.9"/>
+        <path d="M136 75 L140 69 L144 75 L138 79 Z" fill="#F9F871" opacity="0.9"/>
+        <path d="M150 110 L153 104 L156 110 L152 114 Z" fill="#2ECC71" opacity="0.8"/>
+        <!-- etykieta -->
+        <text x="100" y="200" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="DM Sans,sans-serif" font-size="12" font-weight="400" letter-spacing="2">PO</text>
+      </g>
+    </svg>
+  </div>
+  <div class="for-whom-grid reveal">
+    <div class="for-item">
+      <div class="for-item-check">✓</div>
+      <p>Masz wzdęcia, problemy trawienne lub nieregularne wypróżnienia</p>
+    </div>
+    <div class="for-item">
+      <div class="for-item-check">✓</div>
+      <p>Łapiesz infekcje, masz obniżoną odporność lub choroby autoimmunologiczne</p>
+    </div>
+    <div class="for-item">
+      <div class="for-item-check">✓</div>
+      <p>Czujesz chroniczne zmęczenie, mgłę w głowie lub brak energii</p>
+    </div>
+    <div class="for-item">
+      <div class="for-item-check">✓</div>
+      <p>Masz problemy skórne – trądzik, przebarwienia, wrażliwość, brak blasku</p>
+    </div>
+    <div class="for-item">
+      <div class="for-item-check">✓</div>
+      <p>Jesteś po lub w trakcie leczenia i chcesz wesprzeć regenerację organizmu</p>
+    </div>
+    <div class="for-item">
+      <div class="for-item-check">✓</div>
+      <p>Chcesz po prostu zadbać o siebie – holistycznie, świadomie, bez presji</p>
+    </div>
+  </div>
+  <div class="reveal">
+    <a href="https://forms.gle/gCNguN5zoKhNZeXY7" target="_blank" class="btn-primary" style="background: var(--warm-white); color: var(--deep);"><span>To o mnie – zapisuję się →</span></a>
+  </div>
+</section>
+
+<!-- ─── WHAT YOU GET ─── -->
+<section class="get">
+  <div class="get-grid">
+    <div>
+      <div class="section-header reveal" style="text-align: left; margin-bottom: 0;">
+        <span class="section-eyebrow">co otrzymujesz?</span>
+        <h2 class="section-title">Pełne wsparcie.<br><em>Na każdym etapie.</em></h2>
+      </div>
+      <div class="get-list reveal">
+        <div class="get-item">
+          <span class="get-icon">📲</span>
+          <div>
+            <p class="get-item-title">Prywatna grupa wsparcia</p>
+            <p class="get-item-desc">Zamknięta przestrzeń bez oceniania – tylko motywacja, wiedza i wspólnota</p>
+          </div>
+        </div>
+        <div class="get-item">
+          <span class="get-icon">🎙️</span>
+          <div>
+            <p class="get-item-title">Live co tydzień</p>
+            <p class="get-item-desc">12 spotkań z ekspertkami od jelit i skóry – z Q&A i realną edukacją</p>
+          </div>
+        </div>
+        <div class="get-item">
+          <span class="get-icon">📋</span>
+          <div>
+            <p class="get-item-title">Cotygodniowy rytuał</p>
+            <p class="get-item-desc">Jeden konkretny krok na tydzień – lekki, wykonalny, trwały</p>
+          </div>
+        </div>
+        <div class="get-item">
+          <span class="get-icon">📚</span>
+          <div>
+            <p class="get-item-title">Codzienne tipy + motywacja</p>
+            <p class="get-item-desc">Wiedza w praktycznej formie – każdego dnia coś, co możesz wdrożyć</p>
+          </div>
+        </div>
+        <div class="get-item">
+          <span class="get-icon">🌿</span>
+          <div>
+            <p class="get-item-title">PDF powitalny</p>
+            <p class="get-item-desc">„Jak przygotować ciało" – przewodnik na dobry start</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="get-aside reveal">
+      <div class="get-aside-box">
+        <blockquote>„Suplementy są narzędziem, nie celem. Celem jest powrót do równowagi – ulga, zrozumienie siebie, powrót do siebie."</blockquote>
+        <p>— filozofia wyzwania JELITA</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SYNBIOTYK ─── -->
+<section class="synbio">
+  <div class="synbio-inner">
+    <div class="synbio-left reveal">
+      <span class="section-eyebrow">fundament procesu</span>
+      <h2 class="section-title">Jeden synbiotyk.<br><em>Niezwykła formuła.</em></h2>
+      <p class="synbio-lead">Długo szukałyśmy. Testowałyśmy na sobie. Ten synbiotyk to jedyny taki na świecie — połączenie nowoczesnej nauki z tysiącletnią mądrością ajurwedy.</p>
+      <div class="synbio-highlight">
+        <span class="synbio-highlight-icon">🌿</span>
+        <p>Synbiotyk + Triphala — innowacyjny duet, który działa w harmonii z Twoim organizmem. Nie znajdziesz tego nigdzie indziej.</p>
+      </div>
+    </div>
+    <div class="synbio-right reveal">
+      <div class="synbio-cards">
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🔬</span>
+          <h4>9 szczepów żywych bakterii</h4>
+          <p>100 miliardów CFU w każdej kapsułce — w uśpionej formie liofilizowanej, która budzi się dopiero w jelitach</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">💊</span>
+          <h4>Kapsułka dojelitowa</h4>
+          <p>Innowacyjna technologia przedłużonego uwalniania — bakterie przeżywają kwas żołądkowy i docierają tam, gdzie trzeba</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🌱</span>
+          <h4>Prebiotyk FOS w składzie</h4>
+          <p>Bakterie mają gotowy pokarm od razu po "przebudzeniu" — zasiedlają mikrobiom skuteczniej i trwalej</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🍃</span>
+          <h4>Triphala — mądrość wieków</h4>
+          <p>Ajurwedyjska mieszanka Amla, Bibhitaki i Haritaki z błonnikiem akacjowym — oczyszcza, reguluje, wzmacnia</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🛡️</span>
+          <h4>Jelita · odporność · nerwy</h4>
+          <p>Synergistyczne wsparcie układu trawiennego, immunologicznego i nerwowego — całościowo, nie punktowo</p>
+        </div>
+        <div class="synbio-card">
+          <span class="synbio-card-icon">🌙</span>
+          <h4>Dwie kapsułki wieczorem</h4>
+          <p>Prosta forma — po kolacji, zharmonizowana z nocnym rytmem regeneracji Twojego ciała</p>
+        </div>
+      </div>
+      <p class="synbio-tested">✦ Przebadany pod kątem skuteczności · sprawdzony przez nas osobiście ✦</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PRICING ─── -->
+<section class="pricing">
+  <div class="pricing-inner">
+
+    <div class="pricing-header reveal">
+      <span class="section-eyebrow" style="color: var(--earth);">transparentnie o kosztach</span>
+      <h2 class="section-title" style="color: var(--warm-white);">Wyzwanie jest<br><em>bezpłatne.</em></h2>
+      <p class="pricing-sub">Jedyne, o co prosimy — to zadbanie o siebie od środka. Warunkiem uczestnictwa jest stosowanie synbiotyku, który polecamy z pełnym przekonaniem.</p>
+    </div>
+
+    <div class="pricing-grid reveal">
+
+      <!-- lewa: kroki -->
+      <div class="pricing-steps">
+        <h3 class="pricing-steps-title">Jak dołączyć?</h3>
+        <div class="pricing-step">
+          <div class="step-num">01</div>
+          <div class="step-text">
+            <strong>Zapisujesz się</strong>
+            <span>Bezpłatnie. Bez zobowiązań.</span>
+          </div>
+        </div>
+        <div class="pricing-step">
+          <div class="step-num">02</div>
+          <div class="step-text">
+            <strong>Otrzymujesz dostęp do synbiotyku</strong>
+            <span>Ze specjalną ceną zarezerwowaną dla uczestniczek wyzwania</span>
+          </div>
+        </div>
+        <div class="pricing-step">
+          <div class="step-num">03</div>
+          <div class="step-text">
+            <strong>Zaczynasz 90 dni — z nami</strong>
+            <span>Krok po kroku, rytuał po rytuale, tydzień po tygodniu</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- prawa: cena i wartość -->
+      <div class="pricing-value-box">
+        <div class="pricing-free-badge">BEZPŁATNE</div>
+        <p class="pricing-what-free">Udział · Grupa · 12 live'ów · Codzienne wsparcie · PDF</p>
+
+        <div class="pricing-divider"></div>
+
+        <p class="pricing-condition-label">Jedyny koszt:</p>
+        <div class="pricing-cost-row">
+          <span class="pricing-amount">~188 zł</span>
+          <span class="pricing-per">/ miesiąc</span>
+        </div>
+        <p class="pricing-cost-detail">Pierwszy miesiąc: 207 zł · od 2. miesiąca: 188 zł<br>(10% z każdego zakupu wraca jako rabat na kolejny)</p>
+
+        <div class="pricing-coffee">
+          <span class="coffee-icon">☕</span>
+          <p>To <strong>mniej niż kawa na mieście</strong> — ok. 6 zł dziennie. Tyle samo co energetyk, słodka cola czy gotowy napój, który ani nie napełnia, ani nie leczy.<br><br>A za te 6 zł dostajesz synbiotyk, który <strong>zmieni Twoje życie</strong> — jelita odbudowane, skóra czysta, energia stabilna, nastrój wyrównany. 90 dni, które zostają z Tobą na zawsze.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- pasek wartości -->
+    <div class="pricing-value-bar reveal">
+      <p class="pricing-value-title">Co dostajesz za te 90 dni?</p>
+      <div class="pricing-value-items">
+        <div class="pricing-value-item">
+          <span>12 live'ów</span>
+          <small>z ekspertkami</small>
+        </div>
+        <div class="pricing-value-sep">+</div>
+        <div class="pricing-value-item">
+          <span>90 rytuałów</span>
+          <small>krok po kroku</small>
+        </div>
+        <div class="pricing-value-sep">+</div>
+        <div class="pricing-value-item">
+          <span>Codzienna</span>
+          <small>edukacja i motywacja</small>
+        </div>
+        <div class="pricing-value-sep">+</div>
+        <div class="pricing-value-item">
+          <span>Wspólnota</span>
+          <small>kobiet jak Ty</small>
+        </div>
+        <div class="pricing-value-sep">+</div>
+        <div class="pricing-value-item">
+          <span>Synbiotyk</span>
+          <small>który działa</small>
+        </div>
+        <div class="pricing-value-sep">=</div>
+        <div class="pricing-value-item pricing-value-result">
+          <span>Nowa Ty</span>
+          <small>za ~6 zł/dzień</small>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section class="cta-final" id="formularz">
+  <div class="cta-final-inner reveal">
+    <span class="section-eyebrow" style="color: var(--moss);">gotowa?</span>
+    <h2 class="cta-title">Zaczynam.<br><em>90 dni. Jeden krok na raz.</em></h2>
+    <p class="cta-desc">Dołącz do procesu i otrzymaj szczegóły – pakiet startowy, dostęp do grupy i to, co czeka Cię w środku.</p>
+    <div class="cta-buttons">
+      <a href="https://forms.gle/gCNguN5zoKhNZeXY7" target="_blank" class="btn-cta-main"><span>👉 Chcę dołączyć</span></a>
+      <a href="mailto:antidote.joannamichalska@gmail.com" class="btn-cta-secondary"><span>Mam pytania – napisz do mnie</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-brand">JELITA <span>90 dni</span></div>
+  <p class="footer-note">© 2026 · Wyzwanie · Powrót do równowagi<br>
+    <a href="https://www.canva.com/design/DAHBGS-GZ-s/eqT-ao-Ws8DSvZqQhNB_KQ/view?utm_content=DAHBGS-GZ-s&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h7e864b2b83" target="_blank" class="footer-regulamin">📄 Regulamin</a>
+  </p>
+  <div class="footer-contact">
+    Pytania? Napisz do nas 💌<br>
+    <span style="opacity:0.5; font-size:11px;">antidote.joannamichalska@gmail.com</span>
+  </div>
+</footer>
+
+<script>
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
